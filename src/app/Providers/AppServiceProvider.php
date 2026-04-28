@@ -25,11 +25,11 @@ class AppServiceProvider extends ServiceProvider
     {
        View::composer('partials.header', function ($view){
             //buscar todas as categorias ordenar por nome
-            $categorias = Categoria::orderBy('nome_categoria')->get();
+            $listaCategoria = Categoria::orderBy('nome_categoria')->get();
  
-            dd($categorias);
+            //dd($categorias);
  
-            $view->with('categorias', $categorias);
+            $view->with('lista', $listaCategoria);
         });
     }
 }

@@ -17,7 +17,13 @@
                               <li><a href="{{ route('sobre') }}">Sobre</a></li>
                               <li class="dropdown"><a href="{{ route('cardapio.index') }}">Cardapio</a>
                               <ul>
-                                <li><a href="#">Cardápio 1</a></li>
+                                <!-- PARA CADA CARDAPIO COM RELAÇÃO A QUANTIDADE NO BANCO -->
+                                @forelse($lista as $linha)
+                                <li><a href="{{ route('cardapio.categoria', $linha->id_categoria) }}">{{ $linha->nome_categoria }}</a></li>
+                                @Empty
+                                <li>Nenhuma Categoria</li>
+                                @endforelse 
+
                               </ul>
                             </li>
                             </ul>

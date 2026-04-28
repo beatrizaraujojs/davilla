@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// AQUI ESTÁ IDENTIFICANDO O QUE PODE/ O QUE NÃO PODE / E O QUE É PARA ATUALIZAR SOZINHO E OU PREENCHER 
 class Categoria extends Model
 {
     protected $table = 'tbl_categoria';
