@@ -1,4 +1,4 @@
- <div class="preloader">
+ <!-- <div class="preloader">
         <div class="loader_overlay"></div>
         <div class="loader_cogs">
             <div class="loader_cogs__top">
@@ -20,4 +20,4 @@
                 <div class="bottom_hole"></div>
             </div>
         </div>
-    </div>
+    </div> -->

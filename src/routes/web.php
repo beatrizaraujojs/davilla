@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/sobre', [SobreController::class, 'sobre'])->name('sobre');
+
 Route::get('/cardapio', [CardapioController::class, 'cardapio'])->name('cardapio.index');
 Route::get('/cardapio/categoria/{id}', [CardapioController::class, 'show'])->name('cardapio.categoria');
+
+
+Route::get('/Cardapio/Produto/{slug}', [CardapioController::class, 'showProduto'])->name('cardapio.produto');
+
+
+
 Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/regiao', [RegiaoController::class, 'regiao'])->name('regiao.index');
 
