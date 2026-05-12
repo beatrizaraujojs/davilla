@@ -27,6 +27,9 @@ Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/regiao', [RegiaoController::class, 'regiao'])->name('regiao.index');
 
 Route::get('/regiao/area/{id}', [RegiaoController::class, 'show'])->name('regiao.area');
+
+Route::get('/home/produto/{slug}', [HomeController::class, 'linkProduto'])->name('banner');
+
 Route::get('/contato', [ContatoController::class, 'contato'])->name('contato');
 
 

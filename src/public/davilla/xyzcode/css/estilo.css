@@ -1,0 +1,148 @@
+.logo{
+    width: 200px;
+}
+
+.logo img {
+    margin-top: 20px;
+    width: 100%;
+    margin-left: -14px;
+}
+
+.sticky-header .logo img {
+    margin-top: -10px;
+    width: 30%;
+    margin-left: 37px;
+}
+
+.footer-logo img{
+    max-width: 70%;
+}
+
+.service-block .image img {
+    height: stretch;
+}
+
+
+.theme-btn.large {
+    width: 350px;
+}
+
+
+.shopping-cart .cart-footer .theme-btn {
+    float: right;
+    margin-right: 26%;
+}
+
+
+/* Container Principal do Grid */
+.filter-list.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cada Bloco de Produto */
+.portfolio-block-four {
+    width: calc(33.333% - 25px); /* 3 colunas no desktop */
+    min-width: 280px; /* Garante que não fique fino demais no celular */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-block-four:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Área da Imagem */
+.portfolio-block-four .image-box {
+    position: relative;
+    width: 100%;
+    height: 220px; /* Altura fixa para todas as fotos */
+    overflow: hidden;
+}
+
+.portfolio-block-four .image {
+    margin: 0;
+    height: 100%;
+}
+
+.portfolio-block-four .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem perfeitamente sem amassar */
+    transition: transform 0.5s ease;
+}
+
+.portfolio-block-four:hover .image img {
+    transform: scale(1.08); /* Efeito de zoom suave no hover */
+}
+
+/* Ocultando os SVGs problemáticos (A onda e os enfeites do título) */
+.portfolio-block-four .hover-effect svg,
+.portfolio-block-four .title-box h3 svg {
+    display: none !important; 
+}
+
+/* Efeito de clique sobre a imagem */
+.portfolio-block-four .hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-block-four:hover .hover-effect {
+    opacity: 1;
+}
+
+.portfolio-block-four .hover-effect a {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+}
+
+/* Conteúdo de Texto (Título e Preço) */
+.portfolio-block-four .lower-content {
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.portfolio-block-four .title-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+}
+
+.portfolio-block-four .title-box h3 a {
+    color: #4a4a4a;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: color 0.3s;
+}
+
+.portfolio-block-four .title-box h3 a:hover {
+    color: #55a8a1; /* Cor combinando com o botão verde água que vi no seu layout */
+}
+
+.portfolio-block-four .text {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.portfolio-block-four .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e67e22; /* Um tom de laranja/dourado que combina com comida */
+}

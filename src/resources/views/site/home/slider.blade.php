@@ -1,4 +1,5 @@
- <section class="main-slider">
+  <!--Main Slider-->
+    <section class="main-slider">
         <div class="slider_wave"></div>
         <div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
             <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
@@ -6,7 +7,7 @@
                     <li data-index="rs-4" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="850"  data-thumb="#"  data-delay="5999"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     
                     <!-- MAIN IMAGE -->
-                    <img src="" alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                    <img src="{{ asset('davilla/images/main-slider/slide-3.png') }}"  alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
                     <!-- LAYER NR. 1 -->
@@ -42,7 +43,7 @@
                         data-paddingright="[0,0,0,0]"
                         data-paddingbottom="[0,0,0,0]"
                         data-paddingleft="[0,0,0,0]"
-                        style="z-index: 6;"><img src="" alt="" data-ww="654px" data-hh="654px" width="654" height="654" data-no-retina> </div>
+                        style="z-index: 6;"><img src="{{ asset('davilla/images/main-slider/slider_bg_1.png') }}" alt="" data-ww="654px" data-hh="654px" width="654" height="654" data-no-retina> </div>
 
                     <!-- LAYER NR. 3 -->
                     <div class="tp-caption   tp-resizeme" 
@@ -60,7 +61,7 @@
                         data-paddingright="[0,0,0,0]"
                         data-paddingbottom="[0,0,0,0]"
                         data-paddingleft="[0,0,0,0]"
-                        style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342;font-family:ABeeZee;">We offer now a great range of different<br>flavoured bite-size pastries and cakes </div>
+                        style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342;font-family:ABeeZee;">Confeitaria saudável com mais sabor,<br> praticidade e charme em cada pedido</div>
 
                     <!-- LAYER NR. 4 -->
                     <div class="tp-caption   tp-resizeme" 
@@ -77,7 +78,7 @@
                         data-paddingright="[0,0,0,0]"
                         data-paddingbottom="[0,0,0,0]"
                         data-paddingleft="[0,0,0,0]"
-                        style="z-index: 8; min-width: 399px; max-width: 399px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342;font-family:Leckerli One;">Welcome <br>to Bellaria </div>
+                        style="z-index: 8; min-width: 399px; max-width: 399px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342;font-family:Leckerli One;">The Gusta <br>Confeitaria</div>
 
                     <!-- LAYER NR. 5 -->
                     <div class="tp-caption   tp-resizeme" 
@@ -134,7 +135,7 @@
                     <!-- SLIDE  -->
                     <li data-index="rs-5" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="850"  data-thumb=""  data-delay="5999"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src="{{ asset('davilla/IMG/banner.slider.png') }}"   alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <img src="{{ asset('davilla/images/main-slider/slide-2.png') }}"  alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 8 -->
@@ -188,7 +189,7 @@
                             data-paddingright="[0,0,0,0]"
                             data-paddingbottom="[0,0,0,0]"
                             data-paddingleft="[0,0,0,0]"
-                            style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342;font-family:ABeeZee;">We offer now a great range of different<br> flavoured bite-size pastries and cakes </div>
+                            style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342;font-family:ABeeZee;">Sabores leves, bonitos e irresistíveis<br> para o seu dia a dia ou comemoração</div>
 
                         <!-- LAYER NR. 11 -->
                         <div class="tp-caption   tp-resizeme" 
@@ -205,7 +206,7 @@
                             data-paddingright="[0,0,0,0]"
                             data-paddingbottom="[0,0,0,0]"
                             data-paddingleft="[0,0,0,0]"
-                            style="z-index: 8; min-width: 441px; max-width: 441px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342; font-family:Leckerli One;">Welcome <br>to Bellaria </div>
+                            style="z-index: 8; min-width: 441px; max-width: 441px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342; font-family:Leckerli One;">The Gusta <br>Confeitaria</div>
 
                         <!-- LAYER NR. 12 -->
                         <div class="tp-caption   tp-resizeme" 
@@ -258,10 +259,11 @@
                             data-paddingleft="[0,0,0,0]"
                             style="z-index: 11;"><img src="{{ asset('davilla/images/main-slider/slider_bg_2.png') }}" alt="" data-ww="196px" data-hh="107px" width="196" height="107" data-no-retina> </div>
                     </li>
+                    
                     <!-- SLIDE  -->
                     <li data-index="rs-6" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="850"  data-thumb=""  data-delay="5999"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                         <!-- MAIN IMAGE -->
-                        <img src="{{ asset('davilla/IMG/banner.slider.png') }}"   alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <img src="{{ asset('davilla/images/main-slider/slide-1.png') }}"  alt="" title="Home Cakes"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 15 -->
@@ -315,7 +317,7 @@
                             data-paddingright="[0,0,0,0]"
                             data-paddingbottom="[0,0,0,0]"
                             data-paddingleft="[0,0,0,0]"
-                            style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342; font-family:ABeeZee;">We offer now a great range of different<br> flavoured bite-size pastries and cakes </div>
+                            style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 24px; font-weight: 400; color: #4b4342; font-family:ABeeZee;">Delícias saudáveis feitas com carinho<br> para adoçar seus momentos especiais</div>
 
                         <!-- LAYER NR. 18 -->
                         <div class="tp-caption   tp-resizeme" 
@@ -332,7 +334,7 @@
                             data-paddingright="[0,0,0,0]"
                             data-paddingbottom="[0,0,0,0]"
                             data-paddingleft="[0,0,0,0]"
-                            style="z-index: 8; min-width: 394px; max-width: 394px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342;font-family:Leckerli One;">Welcome <br>to Bellaria </div>
+                            style="z-index: 8; min-width: 394px; max-width: 394px; white-space: normal; font-size: 72px; line-height: 72px; font-weight: 400; color: #4b4342;font-family:Leckerli One;">The Gusta <br>Confeitaria</div>
 
                         <!-- LAYER NR. 19 -->
                         <div class="tp-caption   tp-resizeme" 
@@ -366,7 +368,7 @@
                             data-paddingright="[0,0,0,0]"
                             data-paddingbottom="[0,0,0,0]"
                             data-paddingleft="[0,0,0,0]"
-                            style="z-index: 10;"><img src="{{ asset('davilla/IMG/banner.slider.png') }}"  alt="" data-ww="196px" data-hh="107px" width="196" height="107" data-no-retina> </div>
+                            style="z-index: 10;"><img src="{{ asset('davilla/images/main-slider/slider_bg_3.png') }}" alt="" data-ww="196px" data-hh="107px" width="196" height="107" data-no-retina> </div>
 
                         <!-- LAYER NR. 21 -->
                         <div class="tp-caption tp-resizeme hide-sm" 
@@ -389,3 +391,4 @@
             </div>
         </div>
     </section>
+    <!--End Main Slider-->

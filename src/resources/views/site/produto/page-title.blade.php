@@ -1,10 +1,21 @@
-<section class="page-title" style="background-image:url(https://via.placeholder.com/1920x400)">
-        <div class="auto-container">
-            <h1>Birthday Cake</h1>
-            <ul class="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
-                <li><a href="shop.html">Products</a></li>
-                <li>Birthday Cake</li>
-            </ul>
-        </div>
-    </section>
+
+    @php
+    $pageTitle = asset('davilla/images/34.jpg');
+@endphp
+
+<section class="page-title" style="background-image:url('{{ $pageTitle }}')">
+    <div class="auto-container">
+        <h1>{{ $produto->nome_produto ?? 'Cardápio' }}</h1>
+        
+        <ul class="page-breadcrumb">
+            <li><a href="{{ route('home') }}">home</a></li>
+            
+            @if(isset($produto))
+                <li><a href="{{ route('cardapio.index') }}">Cardápio</a></li>
+                <li>{{ $produto->nome_produto }}</li>
+            @else
+                <li>Cardápio</li>
+            @endif
+        </ul>
+    </div>
+</section>
