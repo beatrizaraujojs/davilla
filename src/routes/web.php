@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 // admin
 use App\Http\Controllers\Admin\DashController;
-
+use App\Http\Controllers\Admin\CategoriaController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/sobre', [SobreController::class, 'sobre'])->name('sobre');
@@ -37,6 +37,9 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('contato');
 Route::prefix('admin')->name('admin.')->group(function(){
    
     Route::get('/', [DashController::class, 'index'])->name('dash');
+
+    // 
+    Route::get('/categorias', [CategoriaController::class, 'index'])->name('categoria.index');
 
 
 });
