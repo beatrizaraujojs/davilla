@@ -5,10 +5,10 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2026&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+          Copyright &copy; 2026&nbsp;
+          <a href="https://adminlte.io" class="text-decoration-none">Confeitaria DaVilla</a>.
         </strong>
-        All rights reserved.
+       Todos os direitos reservados
         <!--end::Copyright-->
       </footer>
       <!--end::Footer-->

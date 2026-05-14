@@ -1,16 +1,16 @@
 <?php
  
-
+// site
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\SobreController;
-use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\Site\CardapioController;
 use App\Http\Controllers\Site\PedidosController;
 use App\Http\Controllers\Site\RegiaoController;
 use App\Http\Controllers\Site\ContatoController;
 use Illuminate\Support\Facades\Route;
 
-
+// admin
+use App\Http\Controllers\Admin\DashController;
 
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -36,10 +36,7 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('contato');
 
 Route::prefix('admin')->name('admin.')->group(function(){
    
-  Route::get('/', [DashController::class, 'index'])->name('dash');
-
-
-
+    Route::get('/', [DashController::class, 'index'])->name('dash');
 
 
 });

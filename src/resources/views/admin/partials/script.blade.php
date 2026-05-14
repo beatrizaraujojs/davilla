@@ -1,1 +1,1 @@
- <script src="{{ assert('./js/adminlte.js') }}"></script>
+ <script src="{{ asset('./js/adminlte.js') }}"></script>
