@@ -1,0 +1,1 @@
+ <script src="{{ assert('./js/adminlte.js') }}"></script>

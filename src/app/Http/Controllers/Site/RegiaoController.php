@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Site;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RegiaoController extends Controller
 {
