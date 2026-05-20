@@ -72,7 +72,7 @@
                 <li class="nav-header">GESTÃO COMERCIAL</li>
  
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.produto.index') }}" class="nav-link">
                         <i class="nav-icon bi bi-cash-coin"></i>
                         <p>
                             Comercial
@@ -200,3 +200,5 @@
  
 </aside>
  
+
+

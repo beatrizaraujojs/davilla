@@ -16,6 +16,8 @@
  
         <main class="app-main">
 
+        @include('admin.partials.app-content-header')
+
             @yield('content')
 </main>
  

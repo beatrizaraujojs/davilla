@@ -2,13 +2,12 @@
 
 @section('title', 'Categoria | Confeitaria dashboard')
 
-
-@section('pg-titulo', 'Categoria teste')
-@section('link-topo', 'Categoria')
  
 @section('content')
 
-      <!--begin::App Content-->
+
+
+  <!--begin::App Content-->
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
@@ -18,11 +17,11 @@
             <div  class="card mb-4">
                 
                   <div class="card-header">
-                    <h3 class="card-title">Gerenciamento de Categorias</h3>
+                    <h3 class="card-title">Gerenciamento de Produtos</h3>
                     
                                 <div class="card-tools">
-                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalNovaCategoria">
-                            <i class="bi bi-plus-circle"></i> Nova Categoria</button>
+                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalNovoProduto">
+                            <i class="bi bi-plus-circle"></i> Novo Produto</button>
 
                     </div>        
                
@@ -37,25 +36,29 @@
                           <th>Nome</th>
                           <th>Descrição</th>
                           <th>Status</th>
+                          <th>Tamanho</th>
+                          <th>Valor</th>
                           <th style="width: 200px">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @forelse($categorias as $linha)
+                        @forelse($produtos as $linha)
                         <tr class="align-middle">
-                          <td>{{ $linha->ordem_categoria }}</td>
-                          <td>{{ $linha->nome_categoria }}</td>
-                          <td>{{ $linha->descricao_categoria }}</td>
+                          <td>{{ $linha->ordem_produto }}</td>
+                          <td>{{ $linha->nome_produto }}</td>
+                          <td>{{ $linha->descricao_produto }}</td>
                           <td>
-                            @if($linha->status_categoria === 'ATIVO')
+                            @if($linha->status_produto === 'ATIVO')
                             <span  class="btn btn-success">Ativo</span>
 
                             @else
                             <span class="btn btn-danger">Inativo</span>
 
-                            
-
                             @endif
+
+                              <td>{{ $linha->tamanho_produto }}</td>
+                                <td>{{ $linha->valor_produto }}</td>
+
                           </td>
                           <td>
                                  
@@ -96,6 +99,4 @@
             </div>
 
 
-            @include('admin.categoria.modal.criar')
-            
 @endsection

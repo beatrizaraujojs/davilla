@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 // admin
 use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\ProdutoController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/sobre', [SobreController::class, 'sobre'])->name('sobre');
@@ -40,6 +41,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     // 
     Route::get('/categorias', [CategoriaController::class, 'index'])->name('categoria.index');
+
+    Route::get('/produtos', [ProdutoController::class, 'index'])->name('produto.index');
 
 
 });
