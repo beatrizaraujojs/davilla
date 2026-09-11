@@ -79,4 +79,32 @@ class CategoriaController extends Controller
         ->route('admin.categoria.index')
         ->with('success', 'Categoria ativada com sucesso');
     }
+
+
+    public function update(Request $request, $id){
+
+        $request->validate([
+            'nome_categoria' => 'required|string|max:30',
+            'descricao_categoria' => 'required|string',
+            'ordem_categoria' => "required|integer",
+            'status_categoria' => "required|in:ATIVO,INATIVO",
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->update([
+
+            'nome_categoria' => $request->nome_categoria,
+             'descricao_categoria' => $request->descricao_categoria,
+              'ordem_categoria' => $request->ordem_categoria,
+               'status_categoria' => $request->status_categoria,
+
+
+        ]);
+
+        return redirect ()
+        ->route('admin.categoria.index')
+        ->with('success', 'Categoria atualizada com sucesso');
+
+    }
 }

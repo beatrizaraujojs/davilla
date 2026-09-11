@@ -77,9 +77,9 @@
                     data-bs-target="#modalEditarCategoria{{ $linha->id_categoria }}">
                     <i class="bi bi-pencil"></i>
                   </button>
+                   @include('admin.categoria.modal.editar', ['categoria' => $linha])
 
-
-                  @if ($linha->id_categoria === 'ATIVO')
+                 @if ($linha->status_categoria === 'ATIVO')
 
                   
                   <form action="{{ route('admin.categoria.desativar', $linha->id_categoria) }}" method="post">
@@ -134,5 +134,6 @@
 
 
 @include('admin.categoria.modal.criar')
+
 
 @endsection

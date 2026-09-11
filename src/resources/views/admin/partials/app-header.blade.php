@@ -156,31 +156,45 @@
             </li>
             <!--end::Fullscreen Toggle-->
 
+            @php
+            
+            $usuarioLogado = auth('admin')->user();
+
+            $fotoUser = $usuarioLogado && $usuarioLogado->foto_usuario 
+            ? asset('dash/assets/img/user/' . $usuarioLogado->foto_usuario)
+
+            : asset('dash/assets/img/user/user.png');
+
+
+
+            @endphp
+
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="./assets/img/user2-160x160.jpg"
+                  src="{{ $fotoUser }}"
                   class="user-image rounded-circle shadow"
-                  alt="User Image"
+                  alt="{{ $usuarioLogado->nome_usuario }}"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ $usuarioLogado->nome_usuario }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="./assets/img/user2-160x160.jpg"
+                    src="{{ $fotoUser }}"
                     class="rounded-circle shadow"
-                    alt="User Image"
+                    alt="{{ $usuarioLogado->nome_usuario }}"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
+                    {{ $usuarioLogado->nome_usuario }}
+                    <small>{{ $usuarioLogado->email_usuario }} | {{ $usuarioLogado->perfil_usuario }}</small>
+                    <small>{{ date('d/m/Y', strtotime($usuarioLogado->criado_em_usuario)) }}</small>
                   </p>
                 </li>
                 <!--end::User Image-->
-                <!--begin::Menu Body-->
+                <!-- begin::Menu Body-->
                 <li class="user-body">
                   <!--begin::Row-->
                   <div class="row">
@@ -196,11 +210,18 @@
                   </div>
                   <!--end::Row-->
                 </li>
-                <!--end::Menu Body-->
+                <!--end::Menu Body -->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-outline-secondary">Profile</a>
-                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+
+                  <form action="{{ route('admin.logout') }}" method="POST" class="float-end">
+                    @csrf
+                   
+                   <button type="submit" class="btn btn-outline-danger float-end">Sair</button>
+ 
+                  </form>
+                 
                 </li>
                 <!--end::Menu Footer-->
               </ul>

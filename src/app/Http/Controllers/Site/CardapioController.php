@@ -29,6 +29,9 @@ class CardapioController extends Controller
         $listaProduto = Produto::with('CategoriaProduto')
         ->where('status_produto', 'ATIVO')
         ->orderBy('ordem_produto')
+         ->whereHas('CategoriaProduto', function ($query) {
+                $query->where('status_categoria', 'ATIVO');
+            })
         ->get();
  
         // Parar e mostrar o que está ordenando de acordo com o que está puxando
@@ -43,13 +46,24 @@ class CardapioController extends Controller
  
         $produto = Produto::with('CategoriaProduto')
         ->where('status_produto', 'ATIVO')
+          ->whereHas('CategoriaProduto', function ($query) {
+                    $query->where('status_categoria', 'ATIVO');
+            })
         ->where('slug_produto', $slug)
         ->firstOrFail();
         //dd($produto);
  
 
 
-        $produtosRelacionados = Produto::where('status_produto', 'ATIVO')->where('id_categoria', $produto->id_categoria)->where('id_produto', '!=', $produto->id_produto)->orderBy('ordem_produto')->get();
+        $produtosRelacionados = Produto::where('status_produto', 'ATIVO')
+
+          ->whereHas('CategoriaProduto', function ($query) {
+                $query->where('status_categoria', 'ATIVO');
+            })
+
+        ->where('id_categoria', $produto->id_categoria
+        )->where('id_produto', '!=', $produto->id_produto)
+        ->orderBy('ordem_produto')->get();
 
 
         $listaCategoria = Categoria::where('status_categoria', 'ATIVO')
@@ -70,6 +84,9 @@ class CardapioController extends Controller
 
         $listaProduto = Produto::with('CategoriaProduto')
             ->where('status_produto', 'ATIVO')
+             ->whereHas('CategoriaProduto', function ($query) {
+                $query->where('status_categoria', 'ATIVO');
+            })
             ->orderBy('ordem_produto')
             ->get();
 

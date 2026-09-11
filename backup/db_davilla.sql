@@ -1,558 +1,632 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
 --
--- Host: 127.0.0.1
--- Tempo de geração: 27/04/2026 às 14:09
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: davilla
+-- ------------------------------------------------------
+-- Server version	8.0.45
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Banco de dados: `db_davilla`
+-- Table structure for table `cache`
 --
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` bigint NOT NULL,
+  PRIMARY KEY (`key`),
+  KEY `cache_expiration_index` (`expiration`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura para tabela `tbl_banner`
+-- Dumping data for table `cache`
 --
 
+LOCK TABLES `cache` WRITE;
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cache_locks`
+--
+
+DROP TABLE IF EXISTS `cache_locks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` bigint NOT NULL,
+  PRIMARY KEY (`key`),
+  KEY `cache_locks_expiration_index` (`expiration`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache_locks`
+--
+
+LOCK TABLES `cache_locks` WRITE;
+/*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_batches`
+--
+
+DROP TABLE IF EXISTS `job_batches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_batches`
+--
+
+LOCK TABLES `job_batches` WRITE;
+/*!40000 ALTER TABLE `job_batches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_batches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint unsigned NOT NULL,
+  `reserved_at` int unsigned DEFAULT NULL,
+  `available_at` int unsigned NOT NULL,
+  `created_at` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+DROP TABLE IF EXISTS `password_reset_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+LOCK TABLES `password_reset_tokens` WRITE;
+/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` VALUES ('4kOBVNa1GNA2Un07U8a8N8JTFldMEY1cpOJtdL9o',NULL,'172.21.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36','eyJfdG9rZW4iOiJCRXhnbTJjcjBEZURSMHhXeWs1ZlVLOGIwaFM2Y2xuMzlPQ2d5R2IyIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1776341417),('N1JFaG94wjtjJy3M0HjuAsK9zlvcw9Y1JqSz0R66',NULL,'172.21.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36','eyJfdG9rZW4iOiJia2s1NFM1SllHR2VlZ0ZRcTlIeG03MjVsbFRVVXlzVXdiYVA4ZU81IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1776342736),('qFKkoIOyR05uRaCsG3D968wu5OXx43d8m0YgOkO7',NULL,'172.21.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36','eyJfdG9rZW4iOiJKWlZlQ2xHdkozaURLV1JDVzhvOEtIek9iSW9aaHcwNlpoakhDZE1LIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1776341323),('ql8bBayxVTriQd1POBD5NomzF38HAAWZdkUnWv9H',NULL,'172.21.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36','eyJfdG9rZW4iOiI2cVVWREc2Wk5VNWZ5bHp0OEVMbjV6OG9VT1dUSEdYcUhZZWYyZ0tGIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1776263296),('uOh0T1LPzphzhq8VdN86sMsbsEXuK7HBk9g5T8we',NULL,'172.21.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0','eyJfdG9rZW4iOiJlRElaZTllMzRvb3c4aGY0ZUF5ZE9lZDdkRXNDdktBcnZ1VjM5VmNXIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1776341186);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_banner`
+--
+
+DROP TABLE IF EXISTS `tbl_banner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_banner` (
-  `id_banner` int(11) NOT NULL,
-  `nome_banner` varchar(30) NOT NULL,
-  `foto_banner` varchar(50) NOT NULL,
-  `status_banner` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_banner` int NOT NULL AUTO_INCREMENT,
+  `nome_banner` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `titulo_banner` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
+  `subtitulo_banner` varchar(120) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descricao_banner` text COLLATE utf8mb4_general_ci,
+  `texto_botao_banner` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `link_botao_banner` varchar(120) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ordem_banner` int NOT NULL DEFAULT '0',
+  `foto_banner` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_banner` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_banner`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_banner`
+-- Dumping data for table `tbl_banner`
 --
 
-INSERT INTO `tbl_banner` (`id_banner`, `nome_banner`, `foto_banner`, `status_banner`) VALUES
-(1, 'Vitrine de Páscoa', 'banner/vitrine-de-pascoa.png', 'ATIVO'),
-(2, 'Bolos Sob Encomenda', 'banner/bolos-sob-encomenda.png', 'ATIVO'),
-(3, 'Café da Tarde', 'banner/cafe-da-tarde.png', 'ATIVO');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_banner` WRITE;
+/*!40000 ALTER TABLE `tbl_banner` DISABLE KEYS */;
+INSERT INTO `tbl_banner` VALUES (1,'home-vitrine','Confeitaria saudável com sabor de verdade','Bolos, doces e kits especiais para momentos que merecem carinho','A The Gusta une apresentação, leveza e praticidade em uma experiência artesanal pensada para quem quer comer bem sem abrir mão do sabor.','Ver cardápio','/cardapio',1,'banner/home-vitrine-the-gusta.png','ATIVO'),(2,'home-encomenda','Encomendas especiais para celebrar com mais leveza','Pedidos feitos com cuidado para aniversários, presentes e datas especiais','Organize seu pedido com mais praticidade e encontre opções que combinam com o seu momento.','Fazer pedido','/pedidos',2,'banner/home-encomendas-the-gusta.png','ATIVO'),(3,'home-cafe','Seu café da tarde pode ser ainda mais especial','Combinações perfeitas entre bolos, doces e bebidas','Uma vitrine pensada para encantar no visual, no sabor e na experiência.','Entrar em contato','/contato',3,'banner/home-cafe-the-gusta.png','ATIVO');
+/*!40000 ALTER TABLE `tbl_banner` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_categoria`
+-- Table structure for table `tbl_categoria`
 --
 
+DROP TABLE IF EXISTS `tbl_categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_categoria` (
-  `id_categoria` int(11) NOT NULL,
-  `nome_categoria` varchar(30) NOT NULL,
-  `descricao_categoria` text NOT NULL,
-  `criado_em_categoria` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_categoria` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_categoria` int NOT NULL AUTO_INCREMENT,
+  `nome_categoria` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao_categoria` text COLLATE utf8mb4_general_ci NOT NULL,
+  `status_categoria` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'ATIVO',
+  `ordem_categoria` int NOT NULL DEFAULT '0',
+  `criado_em_categoria` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_categoria` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_categoria`
+-- Dumping data for table `tbl_categoria`
 --
 
-INSERT INTO `tbl_categoria` (`id_categoria`, `nome_categoria`, `descricao_categoria`, `criado_em_categoria`, `atualizado_em_categoria`) VALUES
-(1, 'Bolos', 'Bolos de vitrine e sob encomenda.', '2026-03-05 09:53:45', '2026-03-05 09:53:45'),
-(2, 'Doces', 'Brigadeiros, trufas e doces finos.', '2026-03-05 09:55:10', '2026-03-05 09:55:10'),
-(3, 'Bebidas Quentes', 'Café, capuccino e chás.', '2026-03-05 09:57:57', '2026-03-05 09:57:57'),
-(4, 'Tortas', 'Tortas doces vendidas por fatia ou inteira', '2026-03-12 09:38:56', '2026-03-12 09:38:56'),
-(5, 'Kits Presente', 'Kits especiais para presentear', '2026-03-12 09:38:56', '2026-03-12 09:38:56');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_categoria` WRITE;
+/*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
+INSERT INTO `tbl_categoria` VALUES (1,'Bolos Fit','Bolos artesanais com proposta mais leve, ideais para vitrine e encomendas especiais.','ATIVO',1,'2026-05-04 11:18:30','2026-05-04 11:18:30'),(2,'Doces Fit','Doces delicados e saborosos para presentear, celebrar ou adoçar o dia com equilíbrio.','ATIVO',2,'2026-05-04 11:18:30','2026-05-04 11:18:30'),(3,'Tortas Fit','Tortas leves e especiais, vendidas por fatia ou sob encomenda.','ATIVO',3,'2026-05-04 11:18:30','2026-05-20 14:44:36'),(4,'Bebidas','Bebidas quentes e cremosas para acompanhar a experiência da confeitaria.','ATIVO',4,'2026-05-04 11:18:30','2026-05-20 14:44:37'),(5,'Kits Presente','Kits especiais para presentear com praticidade, charme e sabor.','ATIVO',5,'2026-05-04 11:18:30','2026-05-20 14:44:38'),(6,'bolo','ss','INATIVO',6,'2026-05-20 12:52:58','2026-05-20 14:35:12'),(7,'Teste','Teste','INATIVO',7,'2026-05-20 12:54:26','2026-05-20 12:54:26'),(8,'Teste','teste aaaaaaaa','INATIVO',8,'2026-05-20 12:54:34','2026-05-25 12:41:53'),(9,'bolo','teste','INATIVO',9,'2026-05-20 13:27:11','2026-05-20 14:30:32'),(10,'bolo','teste','INATIVO',10,'2026-05-20 13:28:02','2026-05-20 14:29:25'),(11,'bolo','teste','INATIVO',11,'2026-05-20 13:28:25','2026-05-25 12:38:03'),(12,'bolo','Teste se deu certo','ATIVO',12,'2026-05-20 14:02:58','2026-06-03 12:55:21');
+/*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_clientes`
+-- Table structure for table `tbl_clientes`
 --
 
+DROP TABLE IF EXISTS `tbl_clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_clientes` (
-  `id_cliente` int(11) NOT NULL,
-  `nome_cliente` varchar(50) NOT NULL,
-  `tipo_cliente` varchar(2) NOT NULL,
-  `cpf_cnpj_cliente` varchar(18) NOT NULL,
+  `id_cliente` int NOT NULL AUTO_INCREMENT,
+  `nome_cliente` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `tipo_cliente` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
+  `cpf_cnpj_cliente` varchar(18) COLLATE utf8mb4_general_ci NOT NULL,
   `data_nasc_cliente` date NOT NULL,
-  `endereco_cliente` varchar(40) NOT NULL,
-  `numero_cliente` varchar(6) NOT NULL,
-  `complemento_cliente` varchar(50) DEFAULT NULL,
-  `bairro_cliente` varchar(40) NOT NULL,
-  `cidade_cliente` varchar(40) NOT NULL,
-  `uf_cliente` varchar(2) NOT NULL,
-  `cep_cliente` varchar(9) NOT NULL,
-  `email_cliente` varchar(80) NOT NULL,
-  `senha_cliente` varchar(255) NOT NULL,
-  `telefone_cliente` varchar(14) NOT NULL,
-  `foto_cliente` varchar(60) NOT NULL,
-  `status_cliente` varchar(10) NOT NULL DEFAULT 'ATIVO',
-  `criado_em_cliente` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_cliente` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `endereco_cliente` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `numero_cliente` varchar(6) COLLATE utf8mb4_general_ci NOT NULL,
+  `complemento_cliente` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bairro_cliente` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `cidade_cliente` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `uf_cliente` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
+  `cep_cliente` varchar(9) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_cliente` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
+  `senha_cliente` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefone_cliente` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `foto_cliente` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_cliente` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'ATIVO',
+  `criado_em_cliente` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_cliente` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `cpf_cnpj_cliente` (`cpf_cnpj_cliente`),
+  UNIQUE KEY `email_cliente` (`email_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_clientes`
+-- Dumping data for table `tbl_clientes`
 --
 
-INSERT INTO `tbl_clientes` (`id_cliente`, `nome_cliente`, `tipo_cliente`, `cpf_cnpj_cliente`, `data_nasc_cliente`, `endereco_cliente`, `numero_cliente`, `complemento_cliente`, `bairro_cliente`, `cidade_cliente`, `uf_cliente`, `cep_cliente`, `email_cliente`, `senha_cliente`, `telefone_cliente`, `foto_cliente`, `status_cliente`, `criado_em_cliente`, `atualizado_em_cliente`) VALUES
-(1, 'Fernanda Oliveira', 'PF', '123.456.789-10', '1992-07-18', 'Rua Doce Mel', '85', 'Casa A', 'Vila Maria', 'São Paulo', 'SP', '02010-000', 'fernanda.oli@gmail.com', 'senha123', '(11)98765-8521', 'cliente/fernanda-oliveira.png', 'ATIVO', '2026-03-10 09:44:54', '2026-03-10 09:44:54'),
-(2, 'Amanda Souza', 'PF', '12345678901', '1995-04-12', 'Rua das Flores', '120', 'Casa', 'Centro', 'São Paulo', 'SP', '01010000', 'amanda@gmail.com', '123456', '11988887777', 'cliente/amanda-souza.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(3, 'Bruno Lima', 'PF', '23456789012', '1992-08-21', 'Av. Paulista', '850', 'Apto 45', 'Bela Vista', 'São Paulo', 'SP', '01310000', 'bruno@gmail.com', '123456', '11997776666', 'cliente/bruno-lima.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(4, 'Camila Ferreira', 'PF', '34567890123', '1998-02-10', 'Rua do Açúcar', '56', 'Casa', 'Mooca', 'São Paulo', 'SP', '03120000', 'camila@gmail.com', '123456', '11996665555', 'cliente/camila-ferreira.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(5, 'Diego Martins', 'PF', '45678901234', '1989-11-03', 'Rua do Café', '210', 'Casa', 'Tatuapé', 'São Paulo', 'SP', '03333000', 'diego@gmail.com', '123456', '11995554444', 'cliente/diego-martins.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(6, 'Elaine Rocha', 'PF', '56789012345', '1990-06-17', 'Rua Brigadeiro', '98', 'Apto 12', 'Santana', 'São Paulo', 'SP', '02020000', 'elaine@gmail.com', '123456', '11994443333', 'cliente/elaine-rocha.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(7, 'Felipe Nunes', 'PF', '67890123456', '1987-09-25', 'Rua das Palmeiras', '333', 'Casa', 'Penha', 'São Paulo', 'SP', '03654000', 'felipe@gmail.com', '123456', '11993332222', 'cliente/felipe-nunes.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(8, 'Gabriela Costa', 'PF', '78901234567', '1996-03-09', 'Av. Celso Garcia', '741', 'Apto 67', 'Brás', 'São Paulo', 'SP', '03015000', 'gabriela@gmail.com', '123456', '11992221111', 'cliente/gabriela-costa.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(9, 'Henrique Alves', 'PF', '89012345678', '1993-12-01', 'Rua dos Sonhos', '150', 'Casa', 'Ipiranga', 'São Paulo', 'SP', '04210000', 'henrique@gmail.com', '123456', '11991110000', 'cliente/henrique-alves.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20'),
-(10, 'Festa Feliz Eventos', 'PJ', '12345678000190', '2005-01-01', 'Rua dos Eventos', '500', 'Sala 3', 'Vila Mariana', 'São Paulo', 'SP', '04110000', 'contato@festafeliz.com.br', '123456', '1133334444', 'cliente/festa-feliz-eventos.png', 'ATIVO', '2026-03-12 10:07:20', '2026-03-12 10:08:25'),
-(11, 'Cafeteria Central', 'PJ', '98765432000198', '2010-05-15', 'Av. Central', '1000', 'Loja 2', 'República', 'São Paulo', 'SP', '01045000', 'compras@cafecentral.com.br', '123456', '1132221111', 'cliente/cafeteria-central.png', 'INATIVO', '2026-03-12 10:07:20', '2026-03-12 10:07:20');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_clientes` WRITE;
+/*!40000 ALTER TABLE `tbl_clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_clientes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_contato`
+-- Table structure for table `tbl_contato`
 --
 
+DROP TABLE IF EXISTS `tbl_contato`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_contato` (
-  `id_contato` int(11) NOT NULL,
-  `nome_contato` varchar(50) NOT NULL,
-  `email_contato` varchar(80) NOT NULL,
-  `telefone_contato` varchar(14) NOT NULL,
-  `assunto_contato` varchar(30) NOT NULL,
-  `mensagem_contato` text NOT NULL,
-  `status_contato` varchar(10) NOT NULL DEFAULT 'ENVIADO',
-  `criado_em_contato` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_contato` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id_contato` int NOT NULL AUTO_INCREMENT,
+  `nome_contato` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_contato` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefone_contato` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `assunto_contato` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `mensagem_contato` text COLLATE utf8mb4_general_ci NOT NULL,
+  `status_contato` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'ENVIADO',
+  `criado_em_contato` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_contato` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_contato`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_contato`
+-- Dumping data for table `tbl_contato`
 --
 
-INSERT INTO `tbl_contato` (`id_contato`, `nome_contato`, `email_contato`, `telefone_contato`, `assunto_contato`, `mensagem_contato`, `status_contato`, `criado_em_contato`, `atualizado_em_contato`) VALUES
-(1, 'Juliana Rocha', 'juliana.r@gmail.com', '(11)98888-1111', 'Encomenda', 'Quero um bolo de 20kg para um chá de bebê', 'ENVIADO', '2026-03-05 09:37:36', '2026-03-05 09:37:36'),
-(2, 'Pedro Martins', 'pedro.m@gmail.com', '(11)97777-2222', 'Cardápio', 'Vocês tem opção sem lactose?', 'ENVIADO', '2026-03-05 09:40:51', '2026-03-05 09:40:51'),
-(3, 'Carla Nunes', 'carla.n@gmail.com', '(11)96666-3333', 'Pagamento', 'Consigo pagar via PIX na entrega?', 'ENVIADO', '2026-03-05 09:42:34', '2026-03-05 09:42:34'),
-(4, 'Juliana Rocha', 'juliana@gmail.com', '11988881111', 'Encomenda', 'Gostaria de encomendar um bolo para 20 pessoas.', 'ENVIADO', '2026-03-12 10:09:34', '2026-03-12 10:09:34'),
-(5, 'Pedro Martins', 'pedro@gmail.com', '11987772222', 'Cardápio', 'Vocês fazem bolo sem lactose?', 'ENVIADO', '2026-03-12 10:09:34', '2026-03-12 10:09:34'),
-(6, 'Carla Nunes', 'carla@gmail.com', '11986663333', 'Pagamento', 'Aceitam Pix e cartão na retirada?', 'LIDO', '2026-03-12 10:09:34', '2026-03-12 10:09:34'),
-(7, 'Lucas Almeida', 'lucas@gmail.com', '11985554444', 'Orçamento', 'Qual valor de 100 brigadeiros gourmet?', 'RESPONDIDO', '2026-03-12 10:09:34', '2026-03-12 10:09:34'),
-(8, 'Renata Silva', 'renata@gmail.com', '11984445555', 'Entrega', 'Vocês entregam no bairro da Mooca?', 'ENVIADO', '2026-03-12 10:09:34', '2026-03-12 10:09:34');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_contato` WRITE;
+/*!40000 ALTER TABLE `tbl_contato` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_contato` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_controle_materia_prima`
+-- Table structure for table `tbl_controle_materia_prima`
 --
 
+DROP TABLE IF EXISTS `tbl_controle_materia_prima`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_controle_materia_prima` (
-  `id_controle` int(11) NOT NULL,
-  `id_materia_prima` int(11) NOT NULL,
-  `tipo_controle` varchar(7) NOT NULL,
+  `id_controle` int NOT NULL AUTO_INCREMENT,
+  `id_materia_prima` int NOT NULL,
+  `tipo_controle` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
   `qtde_controle` double(10,3) NOT NULL,
-  `data_controle` datetime NOT NULL DEFAULT current_timestamp(),
-  `obs_controle` text DEFAULT NULL
+  `data_controle` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `obs_controle` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id_controle`),
+  KEY `fk_controle_materia_prima_materia_prima` (`id_materia_prima`),
+  CONSTRAINT `fk_controle_materia_prima_materia_prima` FOREIGN KEY (`id_materia_prima`) REFERENCES `tbl_materia_prima` (`id_materia_prima`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_controle_materia_prima`
+-- Dumping data for table `tbl_controle_materia_prima`
 --
 
-INSERT INTO `tbl_controle_materia_prima` (`id_controle`, `id_materia_prima`, `tipo_controle`, `qtde_controle`, `data_controle`, `obs_controle`) VALUES
-(1, 1, 'ENTRADA', 10.000, '2026-03-17 08:20:36', 'Compra semanal de farinha'),
-(2, 2, 'ENTRADA', 8.000, '2026-03-17 08:20:36', 'Reposição de açúcar refinado'),
-(3, 3, 'SAIDA', 2.500, '2026-03-17 08:20:36', 'Produção de ovos de Páscoa'),
-(4, 4, 'SAIDA', 12.000, '2026-03-17 08:20:36', 'Produção de brigadeiros'),
-(5, 5, 'SAIDA', 8.000, '2026-03-17 08:20:36', 'Produção de recheios'),
-(6, 6, 'ENTRADA', 5.000, '2026-03-17 08:20:36', 'Compra de morangos frescos'),
-(7, 7, 'SAIDA', 30.000, '2026-03-17 08:20:36', 'Produção de bolos e tortas'),
-(8, 8, 'SAIDA', 1.500, '2026-03-17 08:20:36', 'Consumo no preparo de cafés'),
-(9, 9, 'ENTRADA', 20.000, '2026-03-17 08:20:36', 'Compra de embalagens'),
-(10, 10, 'SAIDA', 3.000, '2026-03-17 08:20:36', 'Produção de massas e coberturas');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_controle_materia_prima` WRITE;
+/*!40000 ALTER TABLE `tbl_controle_materia_prima` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_controle_materia_prima` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_fornecedores`
+-- Table structure for table `tbl_fornecedores`
 --
 
+DROP TABLE IF EXISTS `tbl_fornecedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_fornecedores` (
-  `id_fornecedor` int(11) NOT NULL,
-  `nome_fornecedor` varchar(50) NOT NULL,
-  `representante_fornecedor` varchar(50) NOT NULL,
-  `email_fornecedor` varchar(80) NOT NULL,
-  `telefone_fornecedor` varchar(14) NOT NULL,
-  `status_fornecedor` varchar(10) NOT NULL DEFAULT 'ATIVO',
-  `criado_em_fornecedor` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_fornecedor` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id_fornecedor` int NOT NULL AUTO_INCREMENT,
+  `nome_fornecedor` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `representante_fornecedor` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_fornecedor` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefone_fornecedor` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_fornecedor` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'ATIVO',
+  `criado_em_fornecedor` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_fornecedor` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_fornecedor`),
+  UNIQUE KEY `email_fornecedor` (`email_fornecedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_fornecedores`
+-- Dumping data for table `tbl_fornecedores`
 --
 
-INSERT INTO `tbl_fornecedores` (`id_fornecedor`, `nome_fornecedor`, `representante_fornecedor`, `email_fornecedor`, `telefone_fornecedor`, `status_fornecedor`, `criado_em_fornecedor`, `atualizado_em_fornecedor`) VALUES
-(1, 'Doce Sabor Distribuidora', 'Marcos Lima', 'contato@docesabor.com.br', '11987654321', 'ATIVO', '2026-03-12 09:39:06', '2026-03-12 09:39:06'),
-(2, 'Laticínios Serra Azul', 'Fernanda Rocha', 'vendas@serraazul.com.br', '11981234567', 'ATIVO', '2026-03-12 09:39:06', '2026-03-12 09:39:06'),
-(3, 'Embala Festas LTDA', 'Carla Mendes', 'comercial@embalafestas.com.br', '11993456789', 'ATIVO', '2026-03-12 09:39:06', '2026-03-12 09:39:06'),
-(4, 'Frutas Boa Colheita', 'Pedro Alves', 'pedidos@boacolheita.com.br', '11992345678', 'ATIVO', '2026-03-12 09:39:06', '2026-03-12 09:39:06'),
-(5, 'Chocolates Premium Brasil', 'Juliana Costa', 'suporte@cpbrasil.com.br', '11994567812', 'INATIVO', '2026-03-12 09:39:06', '2026-03-12 09:39:06');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_fornecedores` WRITE;
+/*!40000 ALTER TABLE `tbl_fornecedores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_fornecedores` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_itens_venda`
+-- Table structure for table `tbl_itens_venda`
 --
 
+DROP TABLE IF EXISTS `tbl_itens_venda`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_itens_venda` (
-  `id_item` int(11) NOT NULL,
-  `id_venda` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
+  `id_item` int NOT NULL AUTO_INCREMENT,
+  `id_venda` int NOT NULL,
+  `id_produto` int NOT NULL,
   `valor_unit_item` double(10,2) NOT NULL,
   `qtde_item` double(10,2) NOT NULL,
-  `status_item` varchar(10) NOT NULL,
-  `atualizado_em_item` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `status_item` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `atualizado_em_item` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_item`),
+  KEY `fk_itens_venda_venda` (`id_venda`),
+  KEY `fk_itens_venda_produto` (`id_produto`),
+  CONSTRAINT `fk_itens_venda_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produtos` (`id_produto`),
+  CONSTRAINT `fk_itens_venda_venda` FOREIGN KEY (`id_venda`) REFERENCES `tbl_vendas` (`id_venda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_itens_venda`
+-- Dumping data for table `tbl_itens_venda`
 --
 
-INSERT INTO `tbl_itens_venda` (`id_item`, `id_venda`, `id_produto`, `valor_unit_item`, `qtde_item`, `status_item`, `atualizado_em_item`) VALUES
-(1, 1, 1, 12.50, 1.00, 'ATIVO', '2026-03-17 07:59:28'),
-(2, 2, 4, 19.90, 1.00, 'ATIVO', '2026-03-17 08:00:07'),
-(3, 3, 7, 6.00, 1.00, 'ATIVO', '2026-03-17 08:00:13'),
-(4, 3, 3, 3.50, 2.00, 'ATIVO', '2026-03-17 08:00:24'),
-(5, 4, 9, 49.90, 1.00, 'ATIVO', '2026-03-17 08:00:33'),
-(6, 5, 5, 13.00, 1.00, 'ATIVO', '2026-03-17 08:00:38'),
-(7, 5, 7, 6.00, 1.00, 'ATIVO', '2026-03-17 08:00:44'),
-(8, 5, 3, 3.50, 2.00, 'ATIVO', '2026-03-17 08:00:48'),
-(9, 7, 8, 10.50, 3.00, 'ATIVO', '2026-03-17 08:00:53');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_itens_venda` WRITE;
+/*!40000 ALTER TABLE `tbl_itens_venda` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_itens_venda` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_materia_prima`
+-- Table structure for table `tbl_materia_prima`
 --
 
+DROP TABLE IF EXISTS `tbl_materia_prima`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_materia_prima` (
-  `id_materia_prima` int(11) NOT NULL,
-  `nome_materia_prima` varchar(30) NOT NULL,
-  `unid_med_materia_prima` varchar(2) NOT NULL,
+  `id_materia_prima` int NOT NULL AUTO_INCREMENT,
+  `nome_materia_prima` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `unid_med_materia_prima` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
   `qtde_atual_materia_prima` double(10,3) NOT NULL,
-  `id_fornecedor` int(11) NOT NULL,
-  `criado_em_materia_prima` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_materia_prima` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id_fornecedor` int NOT NULL,
+  `criado_em_materia_prima` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_materia_prima` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_materia_prima`),
+  KEY `fk_materia_prima_fornecedor` (`id_fornecedor`),
+  CONSTRAINT `fk_materia_prima_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `tbl_fornecedores` (`id_fornecedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_materia_prima`
+-- Dumping data for table `tbl_materia_prima`
 --
 
-INSERT INTO `tbl_materia_prima` (`id_materia_prima`, `nome_materia_prima`, `unid_med_materia_prima`, `qtde_atual_materia_prima`, `id_fornecedor`, `criado_em_materia_prima`, `atualizado_em_materia_prima`) VALUES
-(1, 'Farinha de Trigo', 'KG', 25.000, 1, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(2, 'Açúcar Refinado', 'KG', 18.000, 1, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(3, 'Chocolate em Barra', 'KG', 12.000, 5, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(4, 'Leite Condensado', 'UN', 40.000, 2, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(5, 'Creme de Leite', 'UN', 30.000, 2, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(6, 'Morango', 'KG', 10.000, 4, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(7, 'Ovos', 'UN', 150.000, 1, '2026-03-12 10:16:08', '2026-03-13 08:34:11'),
-(8, 'Café em Pó', 'KG', 8.000, 1, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(9, 'Caixas para Doces', 'UN', 60.000, 3, '2026-03-12 10:16:08', '2026-03-12 10:16:08'),
-(10, 'Manteiga', 'KG', 9.000, 2, '2026-03-12 10:16:08', '2026-03-12 10:16:08');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_materia_prima` WRITE;
+/*!40000 ALTER TABLE `tbl_materia_prima` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_materia_prima` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_produtos`
+-- Table structure for table `tbl_produtos`
 --
 
+DROP TABLE IF EXISTS `tbl_produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_produtos` (
-  `id_produto` int(11) NOT NULL,
-  `nome_produto` varchar(30) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `descricao_produto` text NOT NULL,
-  `tamanho_produto` varchar(10) NOT NULL,
-  `unid_med_produto` varchar(2) NOT NULL,
+  `id_produto` int NOT NULL AUTO_INCREMENT,
+  `nome_produto` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug_produto` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_categoria` int NOT NULL,
+  `descricao_produto` text COLLATE utf8mb4_general_ci NOT NULL,
+  `tamanho_produto` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `unid_med_produto` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
   `valor_produto` double(10,2) NOT NULL,
-  `foto_produto` varchar(60) NOT NULL,
-  `status_produto` varchar(10) NOT NULL DEFAULT 'ATIVO',
-  `criado_em_produto` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_produto` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `foto_produto` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_produto` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'ATIVO',
+  `destaque_produto` varchar(3) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NAO',
+  `ordem_produto` int NOT NULL DEFAULT '0',
+  `criado_em_produto` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_produto` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_produto`),
+  KEY `fk_produtos_categorias` (`id_categoria`),
+  CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categoria` (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_produtos`
+-- Dumping data for table `tbl_produtos`
 --
 
-INSERT INTO `tbl_produtos` (`id_produto`, `nome_produto`, `id_categoria`, `descricao_produto`, `tamanho_produto`, `unid_med_produto`, `valor_produto`, `foto_produto`, `status_produto`, `criado_em_produto`, `atualizado_em_produto`) VALUES
-(1, 'Bolo de Chocolate Fatia', 1, 'Fatia de bolo de chocolate com cobertura', 'Médio', 'FT', 12.50, 'produto/bolo-de-chocolate-fatia.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(2, 'Bolo Red Velvet Fatia', 1, 'Fatia de bolo red velvet com cream cheese', 'Grande', 'FT', 14.00, 'produto/bolo-red-velvet-fatia.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(3, 'Brigadeiro Gourmet', 2, 'Brigadeiro gourmet tradicional', 'Pequeno', 'UN', 3.50, 'produto/brigadeiro-gourmet.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(4, 'Caixa com 6 Doces Finos', 2, 'Caixa com 6 doces finos variados', 'Médio', 'CX', 19.90, 'produto/caixa-com-6-doces-finos.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(5, 'Torta de Limão Fatia', 4, 'Fatia de torta de limão', 'Pequeno', 'FT', 13.00, 'produto/torta-de-limao-fatia.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(6, 'Cheesecake de Frutas Vermelhas', 4, 'Pedaço de cheesecake com frutas vermelhas', 'Grande', 'UN', 15.50, 'produto/cheesecake-de-frutas-vermelhas.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(7, 'Café Expresso 80ml', 3, 'Café expresso tradicional', 'Pequeno', 'ML', 6.00, 'produto/cafe-expresso.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(8, 'Cappuccino 300ml', 3, 'Cappuccino cremoso com toque especial', 'Grande', 'ML', 10.50, 'produto/cappuccino-cremoso.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(9, 'Kit Presente Doce', 5, 'Kit com mini bolo e doces especiais', 'Grande', 'UN', 49.90, 'produto/kit-presente-doce.png', 'INATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14'),
-(10, 'Bolo de Cenoura Mini', 1, 'Mini bolo de cenoura com cobertura de chocolate', 'Pequeno', 'UN', 18.00, 'produto/mini-bolo-de-cenoura.png', 'ATIVO', '2026-03-17 07:51:14', '2026-03-17 07:51:14');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_produtos` WRITE;
+/*!40000 ALTER TABLE `tbl_produtos` DISABLE KEYS */;
+INSERT INTO `tbl_produtos` VALUES (1,'Bolo Banana Fit','bolo-banana-fit',1,'Fatia de bolo de banana com canela, textura macia e preparo artesanal.','Médio','FT',14.90,'produto/bolo-banana-fit.png','ATIVO','SIM',1,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(2,'Bolo Cacau Fit','bolo-cacau-fit',1,'Fatia de bolo de cacau com cobertura leve e sabor marcante.','Médio','FT',15.90,'produto/bolo-cacau-fit.png','ATIVO','SIM',2,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(3,'Mini Bolo Cenoura','mini-bolo-cenoura',1,'Mini bolo de cenoura com cobertura de chocolate e apresentação delicada.','Pequeno','UN',18.90,'produto/mini-bolo-cenoura.png','ATIVO','NAO',3,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(4,'Brownie Fit','brownie-fit',2,'Brownie artesanal com textura macia e uma proposta mais equilibrada.','Pequeno','UN',8.90,'produto/brownie-fit.png','ATIVO','SIM',4,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(5,'Brigadeiro Fit','brigadeiro-fit',2,'Brigadeiro especial com sabor intenso e porção individual.','Pequeno','UN',4.50,'produto/brigadeiro-fit.png','ATIVO','NAO',5,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(6,'Caixa 4 Doces Fit','caixa-4-doces-fit',2,'Caixa com 4 doces variados para presentear ou experimentar.','Pequeno','CX',24.90,'produto/caixa-4-doces-fit.png','ATIVO','SIM',6,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(7,'Torta Limão Fit','torta-limao-fit',3,'Fatia de torta de limão com leveza, frescor e cremosidade.','Médio','FT',16.50,'produto/torta-limao-fit.png','ATIVO','SIM',7,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(8,'Cheesecake Fit','cheesecake-fit',3,'Cheesecake com frutas vermelhas e apresentação elegante para vitrine.','Grande','UN',18.90,'produto/cheesecake-fit.png','ATIVO','NAO',8,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(9,'Cafe Expresso','cafe-expresso',4,'Café expresso encorpado para acompanhar doces e bolos.','Pequeno','ML',6.50,'produto/cafe-expresso.png','ATIVO','NAO',9,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(10,'Cappuccino Cremoso','cappuccino-cremoso',4,'Cappuccino cremoso com toque especial da casa.','Grande','ML',11.90,'produto/cappuccino-cremoso.png','ATIVO','SIM',10,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(11,'Kit Presente Fit','kit-presente-fit',5,'Kit com mini bolo e doces selecionados para presentear com charme.','Grande','UN',54.90,'produto/kit-presente-fit.png','ATIVO','SIM',11,'2026-05-04 11:19:09','2026-05-04 11:19:09'),(12,'Kit Cafe Saudavel','kit-cafe-saudavel',5,'Kit com bebida e doces especiais para uma experiência acolhedora.','Grande','UN',59.90,'produto/kit-cafe-saudavel.png','ATIVO','NAO',12,'2026-05-04 11:19:09','2026-05-04 11:19:09');
+/*!40000 ALTER TABLE `tbl_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_usuarios`
+-- Table structure for table `tbl_usuarios`
 --
 
+DROP TABLE IF EXISTS `tbl_usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_usuarios` (
-  `id_usuario` int(11) NOT NULL,
-  `nome_usuario` varchar(50) NOT NULL,
-  `email_usuario` varchar(80) NOT NULL,
-  `senha_usuario` varchar(255) NOT NULL,
-  `perfil_usuario` varchar(13) NOT NULL,
-  `foto_usuario` varchar(30) NOT NULL,
-  `status_usuario` varchar(10) NOT NULL,
-  `criado_em_usuario` datetime NOT NULL DEFAULT current_timestamp(),
-  `atualizado_em_usuario` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `nome_usuario` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_usuario` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
+  `senha_usuario` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `perfil_usuario` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
+  `foto_usuario` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_usuario` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `criado_em_usuario` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `atualizado_em_usuario` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `email_usuario` (`email_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_usuarios`
+-- Dumping data for table `tbl_usuarios`
 --
 
-INSERT INTO `tbl_usuarios` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `perfil_usuario`, `foto_usuario`, `status_usuario`, `criado_em_usuario`, `atualizado_em_usuario`) VALUES
-(1, 'Roberto Souza', 'roberto.atend@davilla.com.br', 'senha123', 'ATENDENTE', 'usuario/roberto-souza.png', 'ATIVO', '2026-03-10 09:58:30', '2026-03-10 09:58:30'),
-(2, 'Ana Caixa', 'ana.atend@davilla.com', '123456', 'ATENDENTE', 'usuario/ana-caixa.jpg', 'ATIVO', '2026-03-12 10:18:39', '2026-03-12 10:18:39'),
-(3, 'Beatriz Vendas', 'beatriz.atend@davilla.com', '123456', 'ATENDENTE', 'usuario/beatriz-vendas.jpg', 'ATIVO', '2026-03-12 10:18:39', '2026-03-12 10:18:39'),
-(4, 'Carlos Gerente', 'carlos.geren@davilla.com', '123456', 'GERENTE', 'usuario/carlos-gerente.jpg', 'ATIVO', '2026-03-12 10:18:39', '2026-03-12 10:18:39'),
-(5, 'Daniela Admin', 'daniela.admin@davilla.com', '123456', 'ADMIN', 'usuario/daniela-admin.jpg', 'ATIVO', '2026-03-12 10:18:39', '2026-03-12 10:18:39'),
-(6, 'Eduardo Produção', 'eduardo.confe@davilla.com', '123456', 'CONFEITEIRO', 'usuario/eduardo-producao.jpg', 'INATIVO', '2026-03-12 10:18:39', '2026-03-12 10:18:39');
-
--- --------------------------------------------------------
+LOCK TABLES `tbl_usuarios` WRITE;
+/*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
+INSERT INTO `tbl_usuarios` VALUES (1,'Admin','admin@admin.com','$2y$12$Mg.YUqOpK0NGC2n/Vkj2FubahJvTaYpSXPDvTTjNoOPr6rg0pUoiu','admin','','ativo','2026-06-03 12:33:22','2026-06-03 12:43:03');
+/*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `tbl_vendas`
+-- Table structure for table `tbl_vendas`
 --
 
+DROP TABLE IF EXISTS `tbl_vendas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_vendas` (
-  `id_venda` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `data_venda` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_venda` int NOT NULL AUTO_INCREMENT,
+  `id_cliente` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `data_venda` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valor_venda` double(10,2) NOT NULL,
-  `status_venda` varchar(12) NOT NULL,
+  `status_venda` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
   `data_entrega_venda` datetime NOT NULL,
-  `atualizado_em_venda` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `atualizado_em_venda` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_venda`),
+  KEY `fk_venda_cliente` (`id_cliente`),
+  KEY `fk_venda_usuario` (`id_usuario`),
+  CONSTRAINT `fk_venda_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tbl_clientes` (`id_cliente`),
+  CONSTRAINT `fk_venda_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Despejando dados para a tabela `tbl_vendas`
+-- Dumping data for table `tbl_vendas`
 --
 
-INSERT INTO `tbl_vendas` (`id_venda`, `id_cliente`, `id_usuario`, `data_venda`, `valor_venda`, `status_venda`, `data_entrega_venda`, `atualizado_em_venda`) VALUES
-(1, 1, 1, '2026-03-10 10:43:16', 12.50, 'FINALIZADA', '2026-03-10 00:00:00', '2026-03-17 08:05:37'),
-(2, 2, 2, '2026-03-12 10:49:53', 19.90, 'FINALIZADA', '2026-03-06 15:30:00', '2026-03-17 08:05:45'),
-(3, 3, 3, '2026-03-12 10:49:53', 13.00, 'FINALIZADA', '2026-03-06 16:00:00', '2026-03-17 08:05:51'),
-(4, 4, 2, '2026-03-12 10:49:53', 49.90, 'FINALIZADA', '2026-03-06 10:00:00', '2026-03-17 08:05:57'),
-(5, 5, 4, '2026-03-12 10:49:53', 26.00, 'FINALIZADA', '2026-03-07 18:30:00', '2026-03-17 08:06:53'),
-(6, 6, 3, '2026-03-12 10:49:53', 0.00, 'CANCELADA', '2026-03-07 14:00:00', '2026-03-17 08:07:11'),
-(7, 7, 2, '2026-03-12 10:49:53', 31.50, 'FINALIZADA', '2026-03-07 16:20:00', '2026-03-17 08:06:59'),
-(8, 8, 5, '2026-03-12 10:49:53', 0.00, 'EM ANDAMENTO', '2026-03-08 11:00:00', '2026-03-17 08:07:38'),
-(9, 9, 3, '2026-03-12 10:49:53', 0.00, 'EM ANDAMENTO', '2026-03-08 17:00:00', '2026-03-17 08:08:11');
+LOCK TABLES `tbl_vendas` WRITE;
+/*!40000 ALTER TABLE `tbl_vendas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_vendas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Índices para tabelas despejadas
+-- Table structure for table `users`
 --
 
---
--- Índices de tabela `tbl_banner`
---
-ALTER TABLE `tbl_banner`
-  ADD PRIMARY KEY (`id_banner`);
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Índices de tabela `tbl_categoria`
---
-ALTER TABLE `tbl_categoria`
-  ADD PRIMARY KEY (`id_categoria`);
-
---
--- Índices de tabela `tbl_clientes`
---
-ALTER TABLE `tbl_clientes`
-  ADD PRIMARY KEY (`id_cliente`),
-  ADD UNIQUE KEY `cpf_cnpj_cliente` (`cpf_cnpj_cliente`),
-  ADD UNIQUE KEY `email_cliente` (`email_cliente`);
-
---
--- Índices de tabela `tbl_contato`
---
-ALTER TABLE `tbl_contato`
-  ADD PRIMARY KEY (`id_contato`);
-
---
--- Índices de tabela `tbl_controle_materia_prima`
---
-ALTER TABLE `tbl_controle_materia_prima`
-  ADD PRIMARY KEY (`id_controle`),
-  ADD KEY `fk_controle_materia_prima_materia_prima` (`id_materia_prima`);
-
---
--- Índices de tabela `tbl_fornecedores`
---
-ALTER TABLE `tbl_fornecedores`
-  ADD PRIMARY KEY (`id_fornecedor`),
-  ADD UNIQUE KEY `email_fornecedor` (`email_fornecedor`);
-
---
--- Índices de tabela `tbl_itens_venda`
---
-ALTER TABLE `tbl_itens_venda`
-  ADD PRIMARY KEY (`id_item`),
-  ADD KEY `fk_itens_venda_venda` (`id_venda`),
-  ADD KEY `fk_itens_venda_produto` (`id_produto`);
-
---
--- Índices de tabela `tbl_materia_prima`
---
-ALTER TABLE `tbl_materia_prima`
-  ADD PRIMARY KEY (`id_materia_prima`),
-  ADD KEY `fk_materia_prima_fornecedor` (`id_fornecedor`);
-
---
--- Índices de tabela `tbl_produtos`
---
-ALTER TABLE `tbl_produtos`
-  ADD PRIMARY KEY (`id_produto`),
-  ADD KEY `fk_produtos_categorias` (`id_categoria`);
-
---
--- Índices de tabela `tbl_usuarios`
---
-ALTER TABLE `tbl_usuarios`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `email_usuario` (`email_usuario`);
-
---
--- Índices de tabela `tbl_vendas`
---
-ALTER TABLE `tbl_vendas`
-  ADD PRIMARY KEY (`id_venda`),
-  ADD KEY `fk_venda_cliente` (`id_cliente`),
-  ADD KEY `fk_venda_usuario` (`id_usuario`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
+-- Dumping data for table `users`
 --
 
---
--- AUTO_INCREMENT de tabela `tbl_banner`
---
-ALTER TABLE `tbl_banner`
-  MODIFY `id_banner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- AUTO_INCREMENT de tabela `tbl_categoria`
---
-ALTER TABLE `tbl_categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `tbl_clientes`
---
-ALTER TABLE `tbl_clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de tabela `tbl_contato`
---
-ALTER TABLE `tbl_contato`
-  MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de tabela `tbl_controle_materia_prima`
---
-ALTER TABLE `tbl_controle_materia_prima`
-  MODIFY `id_controle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `tbl_fornecedores`
---
-ALTER TABLE `tbl_fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `tbl_itens_venda`
---
-ALTER TABLE `tbl_itens_venda`
-  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de tabela `tbl_materia_prima`
---
-ALTER TABLE `tbl_materia_prima`
-  MODIFY `id_materia_prima` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `tbl_produtos`
---
-ALTER TABLE `tbl_produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `tbl_usuarios`
---
-ALTER TABLE `tbl_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `tbl_vendas`
---
-ALTER TABLE `tbl_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `tbl_controle_materia_prima`
---
-ALTER TABLE `tbl_controle_materia_prima`
-  ADD CONSTRAINT `fk_controle_materia_prima_materia_prima` FOREIGN KEY (`id_materia_prima`) REFERENCES `tbl_materia_prima` (`id_materia_prima`);
-
---
--- Restrições para tabelas `tbl_itens_venda`
---
-ALTER TABLE `tbl_itens_venda`
-  ADD CONSTRAINT `fk_itens_venda_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produtos` (`id_produto`),
-  ADD CONSTRAINT `fk_itens_venda_venda` FOREIGN KEY (`id_venda`) REFERENCES `tbl_vendas` (`id_venda`);
-
---
--- Restrições para tabelas `tbl_materia_prima`
---
-ALTER TABLE `tbl_materia_prima`
-  ADD CONSTRAINT `fk_materia_prima_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `tbl_fornecedores` (`id_fornecedor`);
-
---
--- Restrições para tabelas `tbl_produtos`
---
-ALTER TABLE `tbl_produtos`
-  ADD CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categoria` (`id_categoria`);
-
---
--- Restrições para tabelas `tbl_vendas`
---
-ALTER TABLE `tbl_vendas`
-  ADD CONSTRAINT `fk_venda_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tbl_clientes` (`id_cliente`),
-  ADD CONSTRAINT `fk_venda_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-09-11  8:26:27
